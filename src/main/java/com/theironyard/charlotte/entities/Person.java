@@ -1,6 +1,7 @@
 package com.theironyard.charlotte.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "people")
@@ -23,13 +24,17 @@ public class Person {
     @Column (nullable = false)
     String photo;
 
-    public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo) {
+    @ManyToMany
+    List<Group> groupList;
+
+    public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo, List<Group> groupList) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.gender = gender;
         this.birthday = birthday;
         this.photo = photo;
+        this.groupList = groupList;
     }
 
     public Person() {

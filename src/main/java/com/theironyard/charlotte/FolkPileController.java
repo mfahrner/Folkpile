@@ -12,9 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- * Created by Ben on 9/8/16.
- */
 @Controller
 public class FolkPileController {
     @RequestMapping(path = "/")
