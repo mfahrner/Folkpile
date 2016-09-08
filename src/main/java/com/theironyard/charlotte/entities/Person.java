@@ -9,23 +9,32 @@ public class Person {
 
     @Id
     @GeneratedValue
-    Integer id;
+    int id;
 
     @Column (nullable = false)
     String firstName;
+
     @Column (nullable = false)
     String lastName;
+
     @Column (nullable = false, unique = true)
     String userName;
+
     @Column (nullable = false)
     String gender;
+
     @Column (nullable = false)
     String birthday;
+
     @Column (nullable = false)
     String photo;
 
     @ManyToMany
     List<Group> groupList;
+
+
+    public Person() {
+    }
 
     public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo, List<Group> groupList) {
         this.firstName = firstName;
@@ -35,8 +44,5 @@ public class Person {
         this.birthday = birthday;
         this.photo = photo;
         this.groupList = groupList;
-    }
-
-    public Person() {
     }
 }
