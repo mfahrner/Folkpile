@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-@Controller
+@RestController
 public class FolkPileController {
     @RequestMapping(path = "/")
     @ResponseBody
@@ -34,9 +35,25 @@ public class FolkPileController {
                 String line = fileScanner.nextLine();
                 String[] columns = line.split(",");
 
-                Person person = new Person(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5]);
+                Person person = new Person(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], null);
                 people.save(person);
             }
         }
     }
+
+//    @RequestMapping(path = "/people", method = RequestMethod.GET)
+//    public List<Person> getPeople() {
+//        return (List<Person>) people.findAll();
+//    }
+
+
+//    @RequestMapping(path = "/group", method = RequestMethod.GET)
+//    public List<Group> getGroups() {
+//        return (List<Group>) groups.findAll();
+//    }
+//
+//    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
+//    public Group getGroup(@PathVariable("id") int id) {
+//        return groups.findOne(id);
+//    }
 }
