@@ -1,9 +1,6 @@
 package com.theironyard.charlotte.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "people")
@@ -13,11 +10,17 @@ public class Person {
     @GeneratedValue
     Integer id;
 
+    @Column (nullable = false)
     String firstName;
+    @Column (nullable = false)
     String lastName;
+    @Column (nullable = false, unique = true)
     String userName;
+    @Column (nullable = false)
     String gender;
+    @Column (nullable = false)
     String birthday;
+    @Column (nullable = false)
     String photo;
 
     public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo) {
@@ -27,5 +30,8 @@ public class Person {
         this.gender = gender;
         this.birthday = birthday;
         this.photo = photo;
+    }
+
+    public Person() {
     }
 }
