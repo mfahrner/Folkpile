@@ -83,13 +83,13 @@ public class FolkPileController {
 ////        p.addPersonToGroup();
 //    }
     @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-    public List<Person> searchPeople(@RequestParam("p") String p) {
+    public List<Person> searchPeople(@RequestParam("q") String q) {
 
-//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(p);
+//        return people.findByfirstNameOrlastNameOruserNameAllContainingAllIgnoreCase(p);
 
 //        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
 
-        return people.findByfirstNameContaining(p);
+        return people.findByfirstNameContaining(q);
     }
 
 //    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
