@@ -60,7 +60,7 @@ public class FolkPileController {
     @RequestMapping(path = "/people", method = RequestMethod.GET)
     public List<Person> getPeople(String search) {
         if (search != null) {
-            return people.findByfirstNameContaining(search);
+            return (List<Person>)people.findByNameStartsWith(search);
         }
         return (List<Person>) people.findAll();
     }
