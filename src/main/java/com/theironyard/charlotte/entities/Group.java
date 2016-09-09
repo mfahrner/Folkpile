@@ -22,6 +22,10 @@ public class Group {
     @JoinTable
     List<Person> people = new ArrayList<>();
 
+    public Group() {
+
+    }
+
     public Group(String groupName) {
         this.groupName = groupName;
 
