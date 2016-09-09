@@ -75,10 +75,9 @@ public class FolkPileController {
     }
 
     @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-    public Group addPersonToGroups(@PathVariable("id") int id, Person p, CrudRepository repo) {
+    public void addPersonToGroups(@PathVariable("id") int id, Person p) {
         Group g = groups.findOne(id);
         g.addPersonToGroup(p, groups);
         p.addGroupsToPerson(g, people);
-        return groups.findOne(id);
     }
 }

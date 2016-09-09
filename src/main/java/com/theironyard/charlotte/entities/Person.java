@@ -105,4 +105,8 @@ public class Person{
     public Person(List<Group> groups) {
         this.groups = groups;
     }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
 }
