@@ -101,4 +101,8 @@ public class Person{
         repo.save(this);
         return this;
     }
+
+    public Person(List<Group> groups) {
+        this.groups = groups;
+    }
 }

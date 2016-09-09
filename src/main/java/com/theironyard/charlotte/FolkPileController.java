@@ -82,11 +82,3 @@ public class FolkPileController {
         return groups.findOne(id);
     }
 }
-
-//    @RequestMapping(path = "/search", method = RequestMethod.GET)
-//    public List<Person> searchPeople(String search) {
-
-//        return people.findByfirstNameOrlastNameOruserNameAllContainingAllIgnoreCase(p);
-
-//        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
-

@@ -47,4 +47,7 @@ public class Group {
         return this;
     }
 
+    public List<Person> getPeople() {
+        return people;
+    }
 }
