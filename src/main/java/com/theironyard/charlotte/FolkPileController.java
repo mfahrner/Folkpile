@@ -58,4 +58,18 @@ public class FolkPileController {
 //    public Group getGroup(@PathVariable("id") int id) {
 //        return groups.findOne(id);
 //    }
+//
+//    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
+//    public User getUser(@RequestParam("q") String q) {
+//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
+//    }
+
+//    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
+//    public User getUser(@PathVariable("id") int id) {
+    // not sure about this code.  I need clarification on the many to many concept
+//        Person p = people.fineOne(int id);
+//        groups.save(p);
+//    }
+
+
 }
