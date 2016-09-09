@@ -5,7 +5,6 @@ import com.theironyard.charlotte.entities.Person;
 import com.theironyard.charlotte.repositories.GroupRepository;
 import com.theironyard.charlotte.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -68,16 +67,19 @@ public class FolkPileController {
         return (List<Group>) groups.findAll();
     }
 
-//    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
-//    public Group getGroup(@PathVariable("id") int id) {
-//        return groups.findOne(id);
-//    }
-//
-//    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-//    public Person searchPerson(@RequestParam("q") String q) {
-//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
-//    }
-//
+    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
+    public Group getGroup(@PathVariable("id") int id) {
+        return groups.findOne(id);
+    }
+
+    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
+    public List<Person> searchPeople(@RequestParam("p") String p) {
+
+//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(p);
+
+        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
+    }
+
 //    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
 //    public Group addPersonToGroup(@PathVariable("id") int id) {
 //     not sure about this code.  I need clarification on the many to many concept
