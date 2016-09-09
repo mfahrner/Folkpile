@@ -62,12 +62,12 @@ public class FolkPileController {
         return (List<Person>) people.findAll();
     }
 
-//
-//    @RequestMapping(path = "/group", method = RequestMethod.GET)
-//    public List<Group> getGroups() {
-//        return (List<Group>) groups.findAll();
-//    }
-//
+
+    @RequestMapping(path = "/group", method = RequestMethod.GET)
+    public List<Group> getGroups() {
+        return (List<Group>) groups.findAll();
+    }
+
 //    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
 //    public Group getGroup(@PathVariable("id") int id) {
 //        return groups.findOne(id);
