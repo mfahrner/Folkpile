@@ -20,7 +20,7 @@ public class FolkPileController {
     @RequestMapping(path = "/")
     @ResponseBody
     String home() {
-        return "Hello, World!";
+        return "Hello, Super Awesome Webpage!";
     }
 
     @Autowired
