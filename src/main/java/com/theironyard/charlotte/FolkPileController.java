@@ -43,6 +43,18 @@ public class FolkPileController {
                 people.save(person);
             }
         }
+
+        if (groups.count() == 0) {
+            String human = "human";
+            String mutant = "mutant";
+            String cyborg = "cyborg";
+            Group humanGroup = new Group(human);
+            Group mutantGroup = new Group(mutant);
+            Group cyborgGroup = new Group(cyborg);
+            groups.save(humanGroup);
+            groups.save(mutantGroup);
+            groups.save(cyborgGroup);
+        }
     }
 
     @RequestMapping(path = "/people", method = RequestMethod.GET)
