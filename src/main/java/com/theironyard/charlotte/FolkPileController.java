@@ -58,7 +58,10 @@ public class FolkPileController {
     }
 
     @RequestMapping(path = "/people", method = RequestMethod.GET)
-    public List<Person> getPeople() {
+    public List<Person> getPeople(String search) {
+        if (search != null) {
+            return people.findByfirstNameContaining(search);
+        }
         return (List<Person>) people.findAll();
     }
 
@@ -74,19 +77,20 @@ public class FolkPileController {
     }
 
     @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-    public Group addPersonToGroups(@PathVariable("id") int id, Group g, Person p, CrudRepository repo) {
+    public Group addPersonToGroups(@PathVariable("id") int id, Person p, CrudRepository repo) {
+        Group g = groups.findOne(id);
         g.addPersonToGroup(p, groups);
         p.addGroupsToPerson(g, people);
         return groups.findOne(id);
     }
-
-    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-    public List<Person> searchPeople(@RequestParam("firstName") String firstName) {
+//
+//    @RequestMapping(path = "/search", method = RequestMethod.GET)
+//    public List<Person> searchPeople(String search) {
 
 //        return people.findByfirstNameOrlastNameOruserNameAllContainingAllIgnoreCase(p);
 
 //        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
 
-        return people.findByfirstNameContaining(firstName);
+
     }
 }
