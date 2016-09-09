@@ -73,15 +73,13 @@ public class FolkPileController {
         return groups.findOne(id);
     }
 
-//    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-//    public Person searchPerson(@RequestParam("q") String q) {
-//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
-//    }
-//
-//    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-//    public Group addPersonToGroups(@PathVariable("id") int id, Person p, CrudRepository repo) {
-////        p.addPersonToGroup();
-//    }
+    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
+    public Group addPersonToGroups(@PathVariable("id") int id, Group g, Person p, CrudRepository repo) {
+        g.addPersonToGroup(p, groups);
+        p.addGroupsToPerson(g, people);
+        return groups.findOne(id);
+    }
+
     @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
     public List<Person> searchPeople(@RequestParam("q") String q) {
 
@@ -91,13 +89,4 @@ public class FolkPileController {
 
         return people.findByfirstNameContaining(q);
     }
-
-//    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-//    public Group addPersonToGroup(@PathVariable("id") int id) {
-//     not sure about this code.  I need clarification on the many to many concept
-//        Person p = people.fineOne(int id);
-//        groups.save(p);
-//    }
-
-
 }
