@@ -68,11 +68,11 @@ public class FolkPileController {
         return (List<Group>) groups.findAll();
     }
 
-//    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
-//    public Group getGroup(@PathVariable("id") int id) {
-//        return groups.findOne(id);
-//    }
-//
+    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
+    public Group getGroup(@PathVariable("id") int id) {
+        return groups.findOne(id);
+    }
+
 //    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
 //    public Person searchPerson(@RequestParam("q") String q) {
 //        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
