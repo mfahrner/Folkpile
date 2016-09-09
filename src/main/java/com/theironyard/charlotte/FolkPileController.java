@@ -7,7 +7,6 @@ import com.theironyard.charlotte.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class FolkPileController {
     GroupRepository groups;
 
     @PostConstruct
-       public void init() throws IOException {
+    public void init() throws IOException {
         if (people.count() == 0) {
             File f = new File("folkpile.csv");
             Scanner fileScanner = new Scanner(f);
@@ -60,11 +59,10 @@ public class FolkPileController {
     @RequestMapping(path = "/people", method = RequestMethod.GET)
     public List<Person> getPeople(String search) {
         if (search != null) {
-            return (List<Person>)people.findByNameStartsWith(search);
+            return people.findByNameStartsWith(search);
         }
         return (List<Person>) people.findAll();
     }
-
 
     @RequestMapping(path = "/group", method = RequestMethod.GET)
     public List<Group> getGroups() {
@@ -83,7 +81,8 @@ public class FolkPileController {
         p.addGroupsToPerson(g, people);
         return groups.findOne(id);
     }
-//
+}
+
 //    @RequestMapping(path = "/search", method = RequestMethod.GET)
 //    public List<Person> searchPeople(String search) {
 
@@ -91,6 +90,3 @@ public class FolkPileController {
 
 //        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
 
-
-    }
-}
