@@ -6,8 +6,8 @@ import com.theironyard.charlotte.repositories.GroupRepository;
 import com.theironyard.charlotte.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
@@ -81,12 +81,12 @@ public class FolkPileController {
     }
 
     @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-    public List<Person> searchPeople(@RequestParam("q") String q) {
+    public List<Person> searchPeople(@RequestParam("firstName") String firstName) {
 
 //        return people.findByfirstNameOrlastNameOruserNameAllContainingAllIgnoreCase(p);
 
 //        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
 
-        return people.findByfirstNameContaining(q);
+        return people.findByfirstNameContaining(firstName);
     }
 }
