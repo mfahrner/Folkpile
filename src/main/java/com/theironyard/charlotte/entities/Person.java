@@ -3,12 +3,11 @@ package com.theironyard.charlotte.entities;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "people")
-public class Person {
+public class Person{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,6 +101,4 @@ public class Person {
         repo.save(this);
         return this;
     }
-
-
 }

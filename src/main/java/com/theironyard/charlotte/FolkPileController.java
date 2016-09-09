@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
@@ -78,11 +77,25 @@ public class FolkPileController {
 //    public Person searchPerson(@RequestParam("q") String q) {
 //        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
 //    }
+//
+//    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
+//    public Group addPersonToGroups(@PathVariable("id") int id, Person p, CrudRepository repo) {
+////        p.addPersonToGroup();
+//    }
+    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
+    public List<Person> searchPeople(@RequestParam("p") String p) {
 
-    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-    public Group addPersonToGroups(@PathVariable("id") int id, Person p, CrudRepository repo) {
-        p.addPersonToGroup();
+//        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(p);
+
+        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
     }
+
+//    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
+//    public Group addPersonToGroup(@PathVariable("id") int id) {
+//     not sure about this code.  I need clarification on the many to many concept
+//        Person p = people.fineOne(int id);
+//        groups.save(p);
+//    }
 
 
 }
