@@ -89,7 +89,7 @@ public class FolkPileController {
 
 //        return people.findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase(p, p, p);
 
-        return people.findByFirstnameContaining(p);
+        return people.findByfirstNameContaining(p);
     }
 
 //    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)

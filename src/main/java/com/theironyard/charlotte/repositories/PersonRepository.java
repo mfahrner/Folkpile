@@ -11,6 +11,6 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 
 //    List<Person> findByFirstNameOrLastNameOrUsernameAllContainingAllIgnoreCase (String firstName, String lastName, String userName);
 
-    List<Person> findByFirstnameContaining(String firstName);
+    List<Person> findByfirstNameContaining(String firstName);
 
 }
