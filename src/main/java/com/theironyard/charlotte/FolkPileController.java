@@ -1,13 +1,12 @@
 package com.theironyard.charlotte;
 
+import com.theironyard.charlotte.entities.Group;
 import com.theironyard.charlotte.entities.Person;
+import com.theironyard.charlotte.repositories.GroupRepository;
 import com.theironyard.charlotte.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -26,6 +25,9 @@ public class FolkPileController {
     @Autowired
     PersonRepository people;
 
+    @Autowired
+    GroupRepository groups;
+
     @PostConstruct
        public void init() throws IOException {
         if (people.count() == 0) {
@@ -37,7 +39,7 @@ public class FolkPileController {
                 String line = fileScanner.nextLine();
                 String[] columns = line.split(",");
 
-                Person person = new Person(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5], null);
+                Person person = new Person(columns[0], columns[1], columns[2], columns[3], columns[4], columns[5]);
                 people.save(person);
             }
         }
@@ -48,7 +50,7 @@ public class FolkPileController {
         return (List<Person>) people.findAll();
     }
 
-
+//
 //    @RequestMapping(path = "/group", method = RequestMethod.GET)
 //    public List<Group> getGroups() {
 //        return (List<Group>) groups.findAll();
@@ -60,13 +62,13 @@ public class FolkPileController {
 //    }
 //
 //    @RequestMapping(path = "/search?q=", method = RequestMethod.GET)
-//    public User getUser(@RequestParam("q") String q) {
+//    public Person searchPerson(@RequestParam("q") String q) {
 //        return people.findByFirstnameOrLastnameOrUsernameAllContainingAllIgnoreCase(q);
 //    }
-
+//
 //    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-//    public User getUser(@PathVariable("id") int id) {
-    // not sure about this code.  I need clarification on the many to many concept
+//    public Group addPersonToGroup(@PathVariable("id") int id) {
+//     not sure about this code.  I need clarification on the many to many concept
 //        Person p = people.fineOne(int id);
 //        groups.save(p);
 //    }

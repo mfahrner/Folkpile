@@ -1,6 +1,9 @@
 package com.theironyard.charlotte.entities;
 
+import org.springframework.data.repository.CrudRepository;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -8,7 +11,7 @@ import java.util.List;
 public class Person {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     @Column (nullable = false)
@@ -29,21 +32,19 @@ public class Person {
     @Column (nullable = false)
     String photo;
 
-    @ManyToMany
-    List<Group> groupList;
-
+    @ManyToMany(mappedBy = "people")
+    List<Group> groups = new ArrayList<>();
 
     public Person() {
     }
 
-    public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo, List<Group> groupList) {
+    public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.gender = gender;
         this.birthday = birthday;
         this.photo = photo;
-        this.groupList = groupList;
     }
 
     public String getFirstName() {
@@ -93,4 +94,14 @@ public class Person {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+    public Person addGroupsToPerson(Group g, CrudRepository repo) {
+        groups.add(g);
+        g.people.add(this);
+
+        repo.save(this);
+        return this;
+    }
+
+
 }

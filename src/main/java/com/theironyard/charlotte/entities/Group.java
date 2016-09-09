@@ -1,7 +1,10 @@
 package com.theironyard.charlotte.entities;
 
 
+import org.springframework.data.repository.CrudRepository;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,18 +12,19 @@ import java.util.List;
 public class Group {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column (nullable = false, unique = true)
     String groupName;
 
     @ManyToMany
-    List<Person> personList;
+    @JoinTable
+    List<Person> people = new ArrayList<>();
 
-    public Group(String groupName, List<Person> personList) {
+    public Group(String groupName) {
         this.groupName = groupName;
-        this.personList = personList;
+
     }
 
     public String getGroupName() {
@@ -31,11 +35,12 @@ public class Group {
         this.groupName = groupName;
     }
 
-    public List<Person> getPersonList() {
-        return personList;
+    public Group addPersonToGroup(Person p, CrudRepository repo) {
+        people.add(p);
+        p.groups.add(this);
+
+        repo.save(this);
+        return this;
     }
 
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
-    }
 }
