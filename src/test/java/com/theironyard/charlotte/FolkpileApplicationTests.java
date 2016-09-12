@@ -16,7 +16,15 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
+
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FolkpileApplication.class)
@@ -34,44 +42,22 @@ public class FolkpileApplicationTests {
 
 	MockMvc mockMvc;
 
-    double groupCount = groups.count() + 1;
-
-    double peopleCount = people.count() + 1;
-
 	@Before
 	public void before() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
 	}
 
 	@Test
+    @Transactional
 	public void addPersonToGroups() throws Exception {
+		Person p = people.findOne(1);
 
-		Person person = new Person();
-		person.setBirthday("8-10-82");
-		person.setFirstName("butts");
-		person.setGender("neuter");
-		person.setLastName("Yamama");
-		person.setPhoto("blah.jpeg");
-		person.setUserName("yamamam68694");
-		person.setId(2030);
-
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonPerson = mapper.writeValueAsString(person);
-
-		Group group = new Group();
-		group.setGroupName("blahblah");
-		group.setId(47);
-
-		String jsonGroup = mapper.writeValueAsString(group);
+		int groupCount = p.getGroups().size();
 
 		mockMvc.perform(
-				MockMvcRequestBuilders.post("/group/{id}/{userId}")
-						.content(jsonPerson)
-						.content(jsonGroup)
-						.contentType("application/jsonGroup/jsonPerson")
+				MockMvcRequestBuilders.post("/group/{id}/{userId}", "1", "1")
 		);
-        
-		Assert.assertEquals(peopleCount, people.count());
-		Assert.assertEquals(groupCount, groups.count());
+
+		Assert.assertEquals(groupCount + 1, p.getGroups().size());
 	}
 }

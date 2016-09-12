@@ -37,6 +37,10 @@ public class Person{
     public Person() {
     }
 
+    public Person(List<Group> groups) {
+        this.groups = groups;
+    }
+
     public Person(String firstName, String lastName, String userName, String gender, String birthday, String photo) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -94,18 +98,6 @@ public class Person{
         this.photo = photo;
     }
 
-    public Person addGroupsToPerson(Group g, CrudRepository repo) {
-        groups.add(g);
-        g.people.add(this);
-
-        repo.save(this);
-        return this;
-    }
-
-    public Person(List<Group> groups) {
-        this.groups = groups;
-    }
-
     public List<Group> getGroups() {
         return groups;
     }
@@ -116,5 +108,13 @@ public class Person{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Person addGroupsToPerson(Group g, CrudRepository repo) {
+        groups.add(g);
+        g.people.add(this);
+
+        repo.save(this);
+        return this;
     }
 }
