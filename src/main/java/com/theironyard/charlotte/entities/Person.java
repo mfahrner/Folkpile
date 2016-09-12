@@ -1,9 +1,11 @@
 package com.theironyard.charlotte.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "people")
@@ -35,6 +37,17 @@ public class Person{
     List<Group> groups = new ArrayList<>();
 
     public Person() {
+    }
+
+    public Person(Person otherPerson) {
+        id = otherPerson.id;
+        firstName = otherPerson.firstName;
+        lastName = otherPerson.lastName;
+        userName = otherPerson.userName;
+        gender = otherPerson.gender;
+        birthday = otherPerson.birthday;
+        photo = otherPerson.photo;
+        groups = otherPerson.groups;
     }
 
     public Person(List<Group> groups) {
@@ -98,8 +111,13 @@ public class Person{
         this.photo = photo;
     }
 
+    @JsonIgnore
     public List<Group> getGroups() {
         return groups;
+    }
+
+    public List<Integer> getGroupIds() {
+        return getGroups().stream().map(Group::getId).collect(Collectors.toList());
     }
 
     public int getId() {

@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "groups")
@@ -25,6 +26,12 @@ public class Group {
 
     public Group() {
 
+    }
+
+    public Group(Group otherGroup) {
+        id = otherGroup.id;
+        groupName = otherGroup.groupName;
+        people = otherGroup.people;
     }
 
     public Group(String groupName) {
@@ -51,6 +58,10 @@ public class Group {
     @JsonIgnore
     public List<Person> getPeople() {
         return people;
+    }
+
+    public List<Integer> getPeopleIds() {
+        return getPeople().stream().map(Person::getId).collect(Collectors.toList());
     }
 
     public Integer getId() {

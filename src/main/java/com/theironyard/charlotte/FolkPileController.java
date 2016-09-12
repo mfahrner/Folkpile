@@ -1,5 +1,6 @@
 package com.theironyard.charlotte;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.theironyard.charlotte.entities.Group;
 import com.theironyard.charlotte.entities.Person;
 import com.theironyard.charlotte.repositories.GroupRepository;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 @RestController
 public class FolkPileController {
