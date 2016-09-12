@@ -1,7 +1,9 @@
 package com.theironyard.charlotte.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "groups")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Group {
 
     @Id
@@ -55,14 +58,14 @@ public class Group {
         return this;
     }
 
-    @JsonIgnore
+//    @JsonIgnore
     public List<Person> getPeople() {
         return people;
     }
-
-    public List<Integer> getPeopleIds() {
-        return getPeople().stream().map(Person::getId).collect(Collectors.toList());
-    }
+//
+//    public List<Integer> getPeopleIds() {
+//        return getPeople().stream().map(Person::getId).collect(Collectors.toList());
+//    }
 
     public Integer getId() {
         return id;
