@@ -1,6 +1,7 @@
 package com.theironyard.charlotte.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.*;
@@ -40,13 +41,14 @@ public class Group {
     }
 
     public Group addPersonToGroup(Person p, CrudRepository repo) {
-//        people.add(p);
+        people.add(p);
         p.groups.add(this);
 
         repo.save(this);
         return this;
     }
 
+    @JsonIgnore
     public List<Person> getPeople() {
         return people;
     }

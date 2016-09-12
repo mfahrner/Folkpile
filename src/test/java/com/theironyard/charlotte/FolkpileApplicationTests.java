@@ -17,57 +17,57 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = FolkpileApplication.class)
-@WebAppConfiguration
-public class FolkpileApplicationTests {
-
-	@Autowired
-	PersonRepository people;
-
-	@Autowired
-	GroupRepository groups;
-
-	@Autowired
-	WebApplicationContext wap;
-
-	MockMvc mockMvc;
-
-	@Before
-	public void before() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
-	}
-
-	@Test
-	public void addPersonToGroups() throws Exception {
-
-		Person person = new Person();
-		person.setBirthday("8-10-82");
-		person.setFirstName("butts");
-		person.setGender("neuter");
-		person.setLastName("Yamama");
-		person.setPhoto("blah.jpeg");
-		person.setUserName("yamamam68694");
-		person.setId(2030);
-
-		ObjectMapper mapper = new ObjectMapper();
-		String jsonPerson = mapper.writeValueAsString(person);
-
-		Group group = new Group();
-		group.setGroupName("blahblah");
-		group.setId(47);
-
-		String jsonGroup = mapper.writeValueAsString(group);
-
-		mockMvc.perform(
-				MockMvcRequestBuilders.post("/group/{id}/{userId}")
-						.content(jsonPerson)
-						.content(jsonGroup)
-						.contentType("application/jsonGroup/jsonPerson")
-		);
-
-		Assert.assertEquals(1, people.count());
-		Assert.assertEquals(1, groups.count());
-	}
-}
+//
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = FolkpileApplication.class)
+//@WebAppConfiguration
+//public class FolkpileApplicationTests {
+//
+//	@Autowired
+//	PersonRepository people;
+//
+//	@Autowired
+//	GroupRepository groups;
+//
+//	@Autowired
+//	WebApplicationContext wap;
+//
+//	MockMvc mockMvc;
+//
+//	@Before
+//	public void before() {
+//		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
+//	}
+//
+//	@Test
+//	public void addPersonToGroups() throws Exception {
+//
+//		Person person = new Person();
+//		person.setBirthday("8-10-82");
+//		person.setFirstName("butts");
+//		person.setGender("neuter");
+//		person.setLastName("Yamama");
+//		person.setPhoto("blah.jpeg");
+//		person.setUserName("yamamam68694");
+//		person.setId(2030);
+//
+//		ObjectMapper mapper = new ObjectMapper();
+//		String jsonPerson = mapper.writeValueAsString(person);
+//
+//		Group group = new Group();
+//		group.setGroupName("blahblah");
+//		group.setId(47);
+//
+//		String jsonGroup = mapper.writeValueAsString(group);
+//
+//		mockMvc.perform(
+//				MockMvcRequestBuilders.post("/group/{id}/{userId}")
+//						.content(jsonPerson)
+//						.content(jsonGroup)
+//						.contentType("application/jsonGroup/jsonPerson")
+//		);
+//
+//		Assert.assertEquals(1, people.count());
+//		Assert.assertEquals(1, groups.count());
+//	}
+//}

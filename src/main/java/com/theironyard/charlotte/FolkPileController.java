@@ -84,7 +84,7 @@ public class FolkPileController {
         Person p = people.findOne(userId);
 
         g.addPersonToGroup(p, groups);
-        p.addGroupsToPerson(g, people);
+//        p.addGroupsToPerson(g, people);
     }
 
 }
