@@ -109,4 +109,12 @@ public class Person{
     public List<Group> getGroups() {
         return groups;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

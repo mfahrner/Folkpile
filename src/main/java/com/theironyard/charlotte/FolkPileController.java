@@ -74,9 +74,13 @@ public class FolkPileController {
         return groups.findOne(id);
     }
 
-    @RequestMapping(path = "/group/{id}", method = RequestMethod.POST)
-    public void addPersonToGroups(@PathVariable("id") int id, Person p) {
+
+
+//    @CrossOrigin
+    @RequestMapping(path = "/group/{id}/{userId}", method = RequestMethod.POST)
+    public void addPersonToGroups(@PathVariable("id") int id, @PathVariable("userId") int userId) {
         Group g = groups.findOne(id);
+        Person p = people.findOne(userId);
         g.addPersonToGroup(p, groups);
         p.addGroupsToPerson(g, people);
     }
