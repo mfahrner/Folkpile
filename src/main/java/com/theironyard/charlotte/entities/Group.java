@@ -50,4 +50,12 @@ public class Group {
     public List<Person> getPeople() {
         return people;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
