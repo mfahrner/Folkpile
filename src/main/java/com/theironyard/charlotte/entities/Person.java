@@ -95,7 +95,7 @@ public class Person{
     }
 
     public Person addGroupsToPerson(Group g, CrudRepository repo) {
-        groups.add(g);
+//        groups.add(g);
         g.people.add(this);
 
         repo.save(this);

@@ -40,7 +40,7 @@ public class Group {
     }
 
     public Group addPersonToGroup(Person p, CrudRepository repo) {
-        people.add(p);
+//        people.add(p);
         p.groups.add(this);
 
         repo.save(this);
