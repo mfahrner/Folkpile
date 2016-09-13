@@ -58,7 +58,6 @@ public class Group {
         return this;
     }
 
-//    @JsonIgnore
     public List<Person> getPeople() {
         return people;
     }

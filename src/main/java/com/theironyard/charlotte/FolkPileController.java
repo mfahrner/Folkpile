@@ -76,17 +76,13 @@ public class FolkPileController {
         return groups.findOne(id);
     }
 
-//    @CrossOrigin
     @RequestMapping(path = "/group/{id}/{userId}", method = RequestMethod.POST)
     public void addPersonToGroups(@PathVariable("id") int id, @PathVariable("userId") int userId) {
-        // finds the group using the id passed in url
         Group g = groups.findOne(id);
 
-        // finds the person using the id passed in url
         Person p = people.findOne(userId);
 
         g.addPersonToGroup(p, groups);
-//        p.addGroupsToPerson(g, people);
     }
 
 }

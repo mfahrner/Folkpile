@@ -114,11 +114,12 @@ public class Person{
         this.photo = photo;
     }
 
-//    @JsonIgnore
     public List<Group> getGroups() {
         return groups;
     }
-//
+
+//    Had to go a different route bc this also broke front end code
+//    Wanted to leave it commented out as an example of stream for future ref
 //    public List<Integer> getGroupIds() {
 //        return getGroups().stream().map(Group::getId).collect(Collectors.toList());
 //    }
